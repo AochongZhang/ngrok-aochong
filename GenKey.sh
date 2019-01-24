@@ -11,4 +11,4 @@ openssl x509 -req -in keys/server.csr -CA keys/base.pem -CAkey keys/base.key -CA
 # 替换证书
 cp keys/base.pem assets/client/tls/ngrokroot.crt
 
-echo 证书生成完毕
+echo 证书生成完毕 保存在keys目录
