@@ -75,7 +75,7 @@ GOOS=系统 GOARCH=amd64 make release-client
 # 生成配置文件
 ./GenConf.sh 域名
 
-# 启动命令 字域名例: xx.ngrok.xxx.com 端口为服务端配置的端口
+# 启动命令
 ngrok -config=ngrok.cfg -log=ngrok.log -subdomain=子域名 端口
 ```
 
