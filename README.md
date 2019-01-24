@@ -48,6 +48,7 @@ git clone https://github.com/AochongZhang/ngrok-aochong.git
 
 ```shell
 # 系统: linux darwin windows
+# 架构: amd64 arm
 # 生成服务端
 GOOS=系统 GOARCH=amd64 make release-server
 # 生成客户端
