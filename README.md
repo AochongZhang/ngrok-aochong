@@ -88,7 +88,6 @@ windows # Windows 64位
 
 ngrok.yml
 
-<<<<<<< HEAD
 ```yaml
 server_addr: 域名:4443
 trust_host_root_certs: false
@@ -104,9 +103,5 @@ trust_host_root_certs: false
 ```shell
 # 启动命令
 生成的客户端 -config ngrok.yml start 服务名
-=======
-# 启动命令
-ngrok -config=ngrok.cfg -log=ngrok.log -subdomain=子域名 端口
->>>>>>> origin/master
 ```
 
