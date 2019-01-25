@@ -46,6 +46,7 @@ git clone https://github.com/AochongZhang/ngrok-aochong.git
 ### 3. 生成可执行程序
 
 ```shell
+<<<<<<< HEAD
 # 生成指定平台服务端
 ./GenApp.sh 平台名 serever
 # 生成指定平台客户端
@@ -61,6 +62,14 @@ linux # linux 64位
 arm # linux arm架构, 树莓派、安卓手机等
 mac # macOS 64位
 windows # Windows 64位
+=======
+# 系统: linux darwin windows
+# 架构: amd64 arm
+# 生成服务端
+GOOS=系统 GOARCH=amd64 make release-server
+# 生成客户端
+GOOS=系统 GOARCH=amd64 make release-client
+>>>>>>> origin/master
 ```
 
 ### 4. 部署服务端
@@ -82,6 +91,7 @@ windows # Windows 64位
 
 ngrok.yml
 
+<<<<<<< HEAD
 ```yaml
 server_addr: 域名:4443
 trust_host_root_certs: false
@@ -97,5 +107,9 @@ trust_host_root_certs: false
 ```shell
 # 启动命令
 生成的客户端 -config ngrok.yml start 服务名
+=======
+# 启动命令
+ngrok -config=ngrok.cfg -log=ngrok.log -subdomain=子域名 端口
+>>>>>>> origin/master
 ```
 
