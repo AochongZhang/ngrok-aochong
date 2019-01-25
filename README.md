@@ -22,8 +22,6 @@ brew install golang
 
 #### git
 
-#### 科学上网
-
 ## 安装步骤
 
 ### 1. 克隆代码到本地
@@ -39,6 +37,7 @@ git clone https://github.com/AochongZhang/ngrok-aochong.git
 例: ngrok.xxx.com 和 *.ngrok.xxx.com 都解析到你的服务器ip
 
 ```shell
+# 生成证书
 ./GenKey.sh ngrok.xxx.com
 ```
 
@@ -47,14 +46,22 @@ git clone https://github.com/AochongZhang/ngrok-aochong.git
 ### 3. 生成可执行程序
 
 ```shell
-# 系统: linux darwin windows
-# 生成服务端
-GOOS=系统 GOARCH=amd64 make release-server
-# 生成客户端
-GOOS=系统 GOARCH=amd64 make release-client
-```
+# 生成指定平台服务端
+./GenApp.sh 平台名 serever
+# 生成指定平台客户端
+./GenApp.sh 平台名 client
 
-生成的可执行程序保存在bin目录中
+# 生成当前平台服务端
+./GenApp.sh serever
+# 生成当前平台客户端
+./GenApp.sh client
+
+# 平台名
+linux # linux 64位
+arm # linux arm架构, 树莓派、安卓手机等
+mac # macOS 64位
+windows # Windows 64位
+```
 
 ### 4. 部署服务端
 
@@ -71,11 +78,24 @@ GOOS=系统 GOARCH=amd64 make release-client
 
 ### 5. 启动客户端
 
-```shell
-# 生成配置文件
-./GenConf.sh 域名
+#### 修改配置文件
 
-# 启动命令 字域名例: xx.ngrok.xxx.com 端口为服务端配置的端口
-ngrok -config=ngrok.cfg -log=ngrok.log -subdomain=子域名 端口
+ngrok.yml
+
+```yaml
+server_addr: 域名:4443
+trust_host_root_certs: false
+# tunnels:
+#  服务名:
+#    remote_port: 远端端口
+#    proto:
+#      tcp: 本地端口
+```
+
+#### 启动
+
+```shell
+# 启动命令
+生成的客户端 -config ngrok.yml start 服务名
 ```
 
