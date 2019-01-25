@@ -48,13 +48,19 @@ git clone https://github.com/AochongZhang/ngrok-aochong.git
 ```shell
 # 生成指定平台服务端
 ./GenApp.sh 平台名 serever
+
 # 生成指定平台客户端
 ./GenApp.sh 平台名 client
+# 或
+./GenApp.sh 平台名
 
 # 生成当前平台服务端
 ./GenApp.sh serever
+
 # 生成当前平台客户端
 ./GenApp.sh client
+# 或
+./GenApp.sh
 
 # 平台名
 linux # linux 64位
