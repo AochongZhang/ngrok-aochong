@@ -1,7 +1,8 @@
+# ngrok客户端配置模版
 server_addr: 域名:4443
 trust_host_root_certs: false
 tunnels:
- 服务名:
-   remote_port: 远端端口
-   proto:
-     tcp: 本地端口
+  服务名:
+    remote_port: 远端端口
+    proto:
+      tcp: 本地端口

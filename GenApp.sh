@@ -13,26 +13,24 @@ elif [[ $name == "arm" ]]; then
 elif [[ $name == "mac" ]]; then
 	goos=darwin
 	goarch=amd64
-elif [[ $name == "windows" ]]; then
+elif [[ $name == "win" ]]; then
 	goos=windows
 	goarch=amd64
-elif [[ $name == "" ]]; then
-	name=当前
 elif [[ $name == "server" ]]; then
-	name=当前
+	name="当前"
 	app="server"
 elif [[ $name == "client" ]]; then
-	name=当前
+	name="当前"
 	app="client"
 else
-	echo "请指定平台"
-	exit
+	name="当前"
 fi
 
 if [[ $app == "" ]]; then
-	app=client
+	app="server"
 fi
 
+echo ======================================================
 echo "开始生成${name}平台${app}端 >>>>>"
 
 if [[ $app == "server" ]]; then
@@ -44,3 +42,4 @@ else
 fi
 
 echo 生成完毕 保存在bin目录中
+echo ======================================================

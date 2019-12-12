@@ -2,16 +2,19 @@
 
 ### 在ngrok源码基础上增加自动配置构建脚本
 
-## 安装前环境
+## 安装前准备
 
-#### 一台有公网ip的服务器
++ 外网可以访问的服务器
++ 域名，并解析到该服务器
++ go语言环境
++ git
 
-#### go语言环境
+#### Go安装
 
 ##### CentOS
 
 ```shell
-yum install -y golang
+yum install golang
 ```
 
 ##### macOS
@@ -19,8 +22,6 @@ yum install -y golang
 ```shell
 brew install golang
 ```
-
-#### git
 
 ## 安装步骤
 
@@ -32,13 +33,9 @@ git clone https://github.com/AochongZhang/ngrok-aochong.git
 
 ### 2. 生成证书
 
-使用在此之前, 建立一个字域名解析到你的服务器
-
-例: ngrok.xxx.com 和 *.ngrok.xxx.com 都解析到你的服务器ip
-
 ```shell
 # 生成证书
-./GenKey.sh ngrok.xxx.com
+./GenKey.sh 域名
 ```
 
 生成的证书保存在keys目录
@@ -47,35 +44,29 @@ git clone https://github.com/AochongZhang/ngrok-aochong.git
 
 ```shell
 # 生成指定平台服务端
-./GenApp.sh 平台名 serever
+./GenApp.sh 平台名 server
 
 # 生成指定平台客户端
 ./GenApp.sh 平台名 client
-# 或
-./GenApp.sh 平台名
 
 # 生成当前平台服务端
-./GenApp.sh serever
+./GenApp.sh server
 
 # 生成当前平台客户端
 ./GenApp.sh client
-# 或
-./GenApp.sh
 
 # 平台名
 linux # linux 64位
 arm # linux arm架构, 树莓派、安卓手机等
 mac # macOS 64位
-windows # Windows 64位
+win # Windows 64位
 ```
 
 ### 4. 部署服务端
 
-将keys中的server.key和server.crt同服务端可执行程序一同上传到服务器
-
 ```shell
 # 服务端启动命令
-生成的服务端 -tlsKey=server.key -tlsCrt=server.crt -domain="域名" -httpAddr=":端口" -httpsAddr=":端口"
+生成的服务端 domain=域名 -httpAddr=:端口 -httpsAddr=:端口
 ```
 
 #### 服务器开放端口
@@ -89,13 +80,14 @@ windows # Windows 64位
 ngrok.yml
 
 ```yaml
+# ngrok客户端配置模版
 server_addr: 域名:4443
 trust_host_root_certs: false
-# tunnels:
-#  服务名:
-#    remote_port: 远端端口
-#    proto:
-#      tcp: 本地端口
+tunnels:
+  服务名:
+    remote_port: 远端端口
+    proto:
+      tcp: 本地端口
 ```
 
 #### 启动

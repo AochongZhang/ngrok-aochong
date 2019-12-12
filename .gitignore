@@ -1,5 +1,6 @@
 *.swp
 bin/
+keys/
 pkg/
 src/code.google.com
 src/github.com
@@ -8,3 +9,7 @@ src/launchpad.net
 src/gopkg.in
 src/ngrok/client/assets/
 src/ngrok/server/assets/
+assets/client/tls/ngrokroot.crt
+assets/server/tls/snakeoil.crt
+assets/server/tls/snakeoil.key
+.DS_Store
