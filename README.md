@@ -66,12 +66,15 @@ win # Windows 64位
 
 ```shell
 # 服务端启动命令
-生成的服务端 domain=域名 -httpAddr=:端口 -httpsAddr=:端口
+生成的服务端 -domain="域名" -httpAddr=":端口" -httpsAddr=":端口"
+
+# 获取帮助信息
+生成的服务端 -h
 ```
 
 #### 服务器开放端口
 
-服务器防火墙需开放以上配置的端口及4443端口
+服务器防火墙需开放以上配置的端口及4443端口(可通过-tunnelAddr参数修改)
 
 ### 5. 启动客户端
 
@@ -80,14 +83,24 @@ win # Windows 64位
 ngrok.yml
 
 ```yaml
-# ngrok客户端配置模版
-server_addr: 域名:4443
+# 服务端地址
+server_addr: "ip:端口"
+# 是否信任系统根证书
 trust_host_root_certs: false
+# 本地web调试地址，默认127.0.0.1:4040
+# inspect_addr: "0.0.0.0:9999"
 tunnels:
-  服务名:
-    remote_port: 远端端口
+  # 服务名
+  server1:
+    # 可选，指定子域名，不指定默认为服务名
+    # subdomain: "example"
+    # 可选，指定用户名密码
+    # auth: "user:password"
+    # 可选，只适用于TCP隧道
+    # remote_port: 端口
     proto:
-      tcp: 本地端口
+      # 本地端口 http, https, tcp
+      http: 8080
 ```
 
 #### 启动

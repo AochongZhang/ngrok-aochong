@@ -1,8 +1,18 @@
-# ngrok客户端配置模版
-server_addr: 域名:4443
+# 服务端地址
+server_addr: "ip:端口"
+# 是否信任系统根证书
 trust_host_root_certs: false
+# 本地web调试地址，默认127.0.0.1:4040
+# inspect_addr: "0.0.0.0:9999"
 tunnels:
-  服务名:
-    remote_port: 远端端口
+  # 服务名
+  server1:
+    # 可选，指定子域名，不指定默认为服务名
+    # subdomain: "example"
+    # 可选，指定用户名密码
+    # auth: "user:password"
+    # 可选，只适用于TCP隧道
+    # remote_port: 端口
     proto:
-      tcp: 本地端口
+      # 本地端口 http, https, tcp
+      http: 8080
